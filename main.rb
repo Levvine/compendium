@@ -1,7 +1,7 @@
 require_relative 'riot-api'
 
 api = RiotAPI.new
-summoner_name = 'pants are dragon'
+summoner_name = 'lIlIIllIlII'
 escaped_name = CGI.escape(summoner_name)
 puts "#{escaped_name}"
 
@@ -11,23 +11,21 @@ summonerId = api.getSummonerId(escaped_name)
 puts "accountId: #{accountId}"
 puts "summonerId: #{summonerId}"
 
-# remove this while loop
-while false
-  # ex2, fetch match history
-  matchId = api.getLastMatchId(accountId)
-  puts "matchId: #{matchId}"
 
-  # ex3, fetch match data
-  participants = api.getTeamParticipants(matchId)
-  team1 = participants.slice(0...4).join(", ")
-  team2 = participants.slice(5...9).join(", ")
-  puts "team1: #{team1}"
-  puts "team2: #{team2}"
+# ex2, fetch match history
+matchId = api.getLastMatchId(accountId)
+puts "matchId: #{matchId}"
 
-  # ex4, look up a match-in-progress
-  matchInProgress = api.getMatchInProgress(escaped_name)
-  puts "gameId: #{matchInProgress}"
-end
+# ex3, fetch match data
+participants = api.getTeamParticipants(matchId)
+team1 = participants.slice(0...4).join(", ")
+team2 = participants.slice(5...9).join(", ")
+puts "team1: #{team1}"
+puts "team2: #{team2}"
+
+# ex4, look up a match-in-progress
+matchInProgress = api.getMatchInProgress(escaped_name)
+puts "gameId: #{matchInProgress}"
 
 # ex5a, get champion mastery by player id and champion id
 # champ_name = "Ashe"
